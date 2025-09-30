@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+
+import { Text, View, } from "react-native";
+import {SignInScreen} from "../../../screens/signin/index";
+
+
 
 export  default function SignIn() {
-    return(
-        <View>
-            <Text>SignIN Page</Text>
-        </View>
+    return(     
+        <SignInScreen />
     )
 }
