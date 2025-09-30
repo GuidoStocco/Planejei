@@ -1,6 +1,6 @@
 # Planejei
 
-Aplicativo de planejamento de viagens
+Aplicativo planejamento de viagens
 
 Tecnologias usadas: 
 
