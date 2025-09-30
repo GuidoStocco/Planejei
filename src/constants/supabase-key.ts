@@ -1,0 +1,5 @@
+
+
+export const supaUrl = 'https://pmruwvvatognwxbfrwcz.supabase.co';
+
+export const anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtcnV3dnZhdG9nbnd4YmZyd2N6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyNzIzNTMsImV4cCI6MjA3NDg0ODM1M30.4rp8Ow5R9fzl3tYxwY4EyQy9TrCjaIRwUrknuspKJ3o';

@@ -1,22 +1,25 @@
 import { Stack, router} from "expo-router";
 import { useEffect } from "react";
-
+import { supabase } from "../config/supabase";
 
 export default function RootLayout() {
 
-  
-
   useEffect(() => {
-      const signed = false;
 
-      if(!signed){
-        router.replace('/(auth)/signin/page')
-        return;
-      }
+    supabase.auth.onAuthStateChange((event, session) => {
 
-      // router.replace('/(painel)/home/page')
+    if(session){
+      console.log('session exists')
+      router.replace('/(painel)/home/page')
+      return;
+    }
 
-  }, [])
+    console.log('no session')
+    router.replace('/(auth)/signin/page')
+
+  });
+
+  }, []);
 
 
   return(
