@@ -2,7 +2,7 @@ import { Text, View, ScrollView, StatusBar, StyleSheet, Image, TextInput, Toucha
 import colors from './../../constants/colors';
 import {Link} from 'expo-router';
 
-export function SignInScreen() {
+export function SignUpScreen() {
     return(
         <ScrollView
             style={{backgroundColor: colors.zinc}}
@@ -17,6 +17,13 @@ export function SignInScreen() {
                 />
 
                 <View>
+                    <TextInput
+                    placeholder="Nome completo"
+                    autoCapitalize="none"
+                    placeholderTextColor={colors.gray}
+                    style={styles.input}    
+                    />
+
                     <TextInput
                     placeholder="Digite seu e-mail"
                     autoCapitalize="none"
@@ -34,11 +41,11 @@ export function SignInScreen() {
                 </View>    
 
                 <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.btnText}>Acessar conta</Text>
+                    <Text style={styles.btnText}>Criar conta</Text>
                 </TouchableOpacity>
 
-                <Link href={"/(auth)/signup/page"}>
-                    <Text style={styles.linkText}>Ainda não possui uma conta? Cadastre-se</Text>
+                <Link href={"/(auth)/signin/page"}>
+                    <Text style={styles.linkText}>Já possui uma conta? Faça login</Text>
                 </Link>
             </View>
 

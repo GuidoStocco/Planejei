@@ -1,8 +1,10 @@
-import { Stack, router } from "expo-router";
+import { Stack, router} from "expo-router";
 import { useEffect } from "react";
 
 
 export default function RootLayout() {
+
+  
 
   useEffect(() => {
       const signed = false;
@@ -12,7 +14,7 @@ export default function RootLayout() {
         return;
       }
 
-      router.replace('/(painel)/home/page')
+      // router.replace('/(painel)/home/page')
 
   }, [])
 
