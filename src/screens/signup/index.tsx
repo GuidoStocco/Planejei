@@ -1,8 +1,21 @@
 import { Text, View, ScrollView, StatusBar, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 import colors from './../../constants/colors';
 import {Link} from 'expo-router';
+import { Control, FieldErrors, UseFormHandleSubmit } from "react-hook-form";
+import { SignUpFormData } from "@/src/hooks/useSignUp";
 
-export function SignUpScreen() {
+
+interface SignUpScreenProps{
+    control: Control<SignUpFormData>,
+    handleSubmit: UseFormHandleSubmit<SignUpFormData>,
+    onSubmit: (data: SignUpFormData) => Promise<void>,
+    isSubmitting: boolean,
+    errors: FieldErrors<SignUpFormData>
+};
+
+
+export function SignUpScreen({control, handleSubmit, onSubmit, isSubmitting, errors}: 
+    SignUpScreenProps) {
     return(
         <ScrollView
             style={{backgroundColor: colors.zinc}}
