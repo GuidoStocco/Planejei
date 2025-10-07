@@ -30,31 +30,97 @@ export function SignUpScreen({control, handleSubmit, onSubmit, isSubmitting, err
                 />
 
                 <View>
-                    <TextInput
-                    placeholder="Nome completo"
-                    autoCapitalize="none"
-                    placeholderTextColor={colors.gray}
-                    style={styles.input}    
+                    <Controller
+                        control={control}
+                        name='username'
+                        defaultValue=""
+                        render={({field: {onChange, onBlur, value}}) => (
+                            <View>
+                            <TextInput
+                                placeholder="Nome completo"
+                                autoCapitalize="none"
+                                placeholderTextColor={colors.gray}
+                                style={styles.input}    
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                            {errors.username && <Text style={styles.textError}>{errors.username.message}</Text>}
+                           </View> 
+                        )}
                     />
 
-                    <TextInput
-                    placeholder="Digite seu e-mail"
-                    autoCapitalize="none"
-                    placeholderTextColor={colors.gray}
-                    style={styles.input}    
+                    <Controller
+                        control={control}
+                        name='email'
+                        defaultValue=""
+                        render={({field: {onChange, onBlur, value}}) => (
+                            <View>
+                             <TextInput
+                                placeholder="Digite seu e-mail"
+                                autoCapitalize="none"
+                                placeholderTextColor={colors.gray}
+                                style={styles.input}    
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                            {errors.email && <Text style={styles.textError}>{errors.email.message}</Text>}
+                           </View> 
+                        )}
                     />
 
-                    <TextInput
-                    placeholder="**********"
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    placeholderTextColor={colors.gray}
-                    style={styles.input}    
+                     <Controller
+                        control={control}
+                        name='password'
+                        defaultValue=""
+                        render={({field: {onChange, onBlur, value}}) => (    
+                            <View>    
+                                <TextInput
+                                placeholder="Digite sua senha"
+                                autoCapitalize="none"
+                                secureTextEntry={true}
+                                placeholderTextColor={colors.gray}
+                                style={styles.input}    
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                />
+                                {errors.password && <Text style={styles.textError}>{errors.password.message}</Text>}
+                            </View>    
+                        )}
                     />
+
+                    <Controller
+                        control={control}
+                        name='confirmPassword'
+                        defaultValue=""
+                        render={({field: {onChange, onBlur, value}}) => (        
+                            <View>
+                                <TextInput
+                                placeholder="Digite sua senha novamente"
+                                autoCapitalize="none"
+                                secureTextEntry={true}
+                                placeholderTextColor={colors.gray}
+                                style={styles.input}    
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                />
+                                {errors.confirmPassword && <Text style={styles.textError}>{errors.confirmPassword.message}</Text>}
+                            </View>    
+                        )}
+                    />
+                   
+
                 </View>    
 
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.btnText}>Criar conta</Text>
+                <TouchableOpacity style={styles.btn} onPress={handleSubmit(onSubmit)}>
+                    {isSubmitting ? (
+                        <Text style={styles.btnText}>Cadastrando...</Text>
+                    ) : (
+                        <Text style={styles.btnText}>Cadastrar</Text>
+                    )}
                 </TouchableOpacity>
 
                 <Link href={"/(auth)/signin/page"}>
@@ -105,5 +171,9 @@ const styles = StyleSheet.create({
         color: colors.gray,
         textAlign: 'center',
         marginTop: 16
+    },
+    textError:{
+        color: colors.red,
+        marginBottom: 8
     }
 })

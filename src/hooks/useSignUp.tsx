@@ -2,6 +2,7 @@ import { authService } from "../services/auth-service";
 import {z} from 'zod';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {useRouter} from 'expo-router';
 
 
  const signUpSchema = z.object({
@@ -18,6 +19,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
     export type SignUpFormData = z.infer<typeof signUpSchema>;
 
 const useSignUp = () => {
+
+    const router = useRouter();
      
         const {
             control,
@@ -33,7 +36,7 @@ const useSignUp = () => {
         try {
             
             await authService.signUp(data.email, data.password, data.username);
-
+            router.replace('/(painel)/home/page')
         } catch (error) {
             console.log(error);
         }
