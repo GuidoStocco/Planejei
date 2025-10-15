@@ -7,17 +7,24 @@ export default function HomeScreen() {
  return (
    <View style={styles.safeAreaView}>
     <View style={styles.container}>
-        <StatusBar barStyle="dark-content" backgroundColor={colors.zinc}/>
+        <StatusBar barStyle="light-content" backgroundColor={colors.zinc}/>
         
         <View style={styles.row}>
             <Text style={styles.rowText}>Planejei</Text>
 
             <View style={styles.contentLink}>
                 <Link
-                    href="/"
+                    href="/(painel)/profile/page"
                     style={styles.link}
                 >
                     <Feather name="home" size={30} color={colors.white}/>
+                </Link>
+
+                <Link
+                    href="/(painel)/travel/new/page"
+                    style={[styles.link, {backgroundColor: colors.orange}]}
+                >
+                    <Feather name="plus" size={30} color={colors.white}/>
                 </Link>
             </View>
         </View>
@@ -40,15 +47,25 @@ const styles = StyleSheet.create({
         padding:16,
     },
     row:{
-
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginBottom: 16,
+        marginTop: 30
     },
     rowText:{
-
+        fontSize:30,
+        fontWeight:'600',
+        color: colors.orange
     },
     contentLink:{
-
+        flexDirection:'row',
+        gap: 8,
+        alignItems:'center',
+        justifyContent:'center'
     },
     link:{
-        
+        borderRadius: 99,
+        padding: 8
     }
 })
