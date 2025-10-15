@@ -1,9 +1,7 @@
-import { Text, View } from 'react-native';
+import NewTravelScreen from '@/src/screens/travel/new';
 
 export default function NewTravel() {
  return (
-   <View>
-        <Text>New Travel Page</Text>
-   </View>
+   <NewTravelScreen/>
   );
 }
