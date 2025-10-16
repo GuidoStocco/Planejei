@@ -2,8 +2,8 @@ import colors from '@/src/constants/colors';
 import { TravelFormData } from '@/src/hooks/useCreateTravel';
 import { Feather } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { Control, FieldErrors, UseFormHandleSubmit } from 'react-hook-form';
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Platform, } from 'react-native';
+import { Control, FieldErrors, UseFormHandleSubmit, Controller } from 'react-hook-form';
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Platform, TextInput} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface NewTravelScreenProps{
@@ -27,6 +27,81 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                 </View>
 
                 <Text style={styles.subTitle}>Vamos cadastrar sua próxima viagem</Text>
+
+                <Controller
+                    control={control}
+                    name='title'
+                    render={({field: {value, onBlur, onChange}}) => (
+                        <View style={styles.field}>
+                            <Text style={styles.txt}>Objetivo da viagem</Text>
+                            <TextInput
+                                placeholder='Ex: Viagem para a praia'
+                                placeholderTextColor={colors.gray50}
+                                style={styles.textInput}
+                                value={value}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                            />
+                        </View>
+                    )}
+                />
+
+                <Controller
+                    control={control}
+                    name='city'
+                    render={({field: {value, onBlur, onChange}}) => (
+                        <View style={styles.field}>
+                            <Text style={styles.txt}>Cidade e estado</Text>
+                            <TextInput
+                                placeholder='Ex: Bahia, Salvador'
+                                placeholderTextColor={colors.gray50}
+                                style={styles.textInput}
+                                value={value}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                            />
+                        </View>
+                    )}
+                />
+
+                <Text style={styles.detalhesViagem}>Detalhes da viagem</Text>
+
+
+                <Controller
+                    control={control}
+                    name='hotel_address'
+                    render={({field: {value, onBlur, onChange}}) => (
+                        <View style={styles.field}>
+                            <Text style={styles.txt}>Endereço do hotel</Text>
+                            <TextInput
+                                placeholder='Digite o endereço do hotel'
+                                placeholderTextColor={colors.gray50}
+                                style={styles.textInput}
+                                value={value}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                            />
+                        </View>
+                    )}
+                />
+
+                <Controller
+                    control={control}
+                    name='start_date'
+                    render={({field: {value, onBlur, onChange}}) => (
+                        <View style={styles.field}>
+                            <Text style={styles.txt}>Selecione a data de ida</Text>
+                            <TextInput
+                                placeholder='Selecione a data de ida'
+                                placeholderTextColor={colors.gray50}
+                                style={styles.textInput}
+                                value={value}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                            />
+                        </View>
+                    )}
+                />
 
             </ScrollView>
         </SafeAreaView>
@@ -60,6 +135,26 @@ const styles = StyleSheet.create({
         marginTop: 14,
         fontSize: 28,
         marginBottom: 14,
-        fontWeight: '500'
+        fontWeight: '500',
     },
+    textInput:{
+        backgroundColor: colors.white,
+        borderRadius: 4,
+        padding: 12,
+    },
+    field:{
+        marginBottom: 12,
+    },
+    txt:{
+        color: colors.white,
+        marginBottom: 6,
+        fontWeight: '500',
+    },
+    detalhesViagem:{
+        color: colors.white,
+        fontSize: 18,
+        fontWeight: '500',  
+        marginTop: 14,
+        marginBottom: 14
+    }
 });
