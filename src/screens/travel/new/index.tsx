@@ -5,6 +5,7 @@ import { Link } from 'expo-router';
 import { Control, FieldErrors, UseFormHandleSubmit, Controller } from 'react-hook-form';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Platform, TextInput} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import DatePickerInput from '@/src/components/calendar';
 
 interface NewTravelScreenProps{
     control: Control<TravelFormData>;
@@ -89,17 +90,7 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                     control={control}
                     name='start_date'
                     render={({field: {value, onBlur, onChange}}) => (
-                        <View style={styles.field}>
-                            <Text style={styles.txt}>Selecione a data de ida</Text>
-                            <TextInput
-                                placeholder='Selecione a data de ida'
-                                placeholderTextColor={colors.gray50}
-                                style={styles.textInput}
-                                value={value}
-                                onBlur={onBlur}
-                                onChangeText={onChange}
-                            />
-                        </View>
+                        <DatePickerInput label='Data de início da viagem' />                      
                     )}
                 />
 
