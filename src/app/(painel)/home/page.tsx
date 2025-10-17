@@ -1,10 +1,9 @@
-import useProfile from "@/src/hooks/useProfile";
 import HomeScreen from "@/src/screens/home";
-import { Button, Text, View } from "react-native";
+import useTravelList from "@/src/hooks/useTravelList";
 
 export  default function Home() {
 
-    const {logoOut} = useProfile();
+    const {travels, loading} = useTravelList()
 
     return(
         <HomeScreen/>

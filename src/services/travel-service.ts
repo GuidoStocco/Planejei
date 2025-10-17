@@ -9,6 +9,17 @@ export type CreateTravelPayload = {
     end_date: string;
 }
 
+export type Travel = {
+    id: string;
+    title: string;
+    city: string;
+    user_id: string
+    hotel_address: string;
+    start_date: string;
+    end_date: string;
+    created_at: string;
+}
+
 
 export const travelService = {
 
@@ -22,6 +33,18 @@ export const travelService = {
             throw error
         }
         return data
+    },
+
+
+    getTravels: async (user_id: string): Promise<Travel[]> => {
+        const {data, error} = await supabase.from('travels').select('*').eq('user_id', user_id)
+        .order('start_date', {ascending: true})
+
+        if(error){
+            throw error
+        }
+
+        return data;
     }
 
 }
