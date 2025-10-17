@@ -7,7 +7,7 @@ import { supabase } from '../config/supabase';
 import { useEffect, useState } from 'react';
 
 const travelSchema = z.object({
-    title: z.string().min(1, 'O título é obrigatório'),
+    title: z.string().min(1, 'O objetivo da viagem é obrigatório'),
     city: z.string().min(1, 'A cidade é obrigatória'),
     hotel_address: z.string().min(1, 'O endereço do hotel é obrigatório'),
     start_date: z.string().min(1, 'A data de início é obrigatória'),
@@ -37,6 +37,8 @@ const useCreateTravel = () => {
     }, [])
 
     const createNewTravel = async (data: TravelFormData) => {
+
+
 
     }
 

@@ -49,6 +49,7 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                             />
+                            {errors.title && <Text style={styles.textError}>{errors.title?.message}</Text>}
                         </View>
                     )}
                 />
@@ -67,6 +68,7 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                             />
+                            {errors.city && <Text style={styles.textError}>{errors.city?.message}</Text>}
                         </View>
                     )}
                 />
@@ -88,6 +90,7 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                             />
+                            {errors.hotel_address && <Text style={styles.textError}>{errors.hotel_address?.message}</Text>}
                         </View>
                     )}
                 />
@@ -96,10 +99,15 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                     control={control}
                     name='start_date'
                     render={({field: {value, onBlur, onChange}}) => (
+                    <>
                         <DatePickerInput label='Data de início da viagem'
                             value={value}
                             onChange={onChange}
-                        />                      
+                        />          
+                        {errors.start_date && <Text style={styles.textError}>{errors.start_date?.message}</Text>}
+
+                    </>  
+                                       
                     )}
                 />
 
@@ -108,14 +116,21 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                     control={control}
                     name='end_date'
                     render={({field: {value, onBlur, onChange}}) => (
+                    <> 
                         <DatePickerInput label='Data de volta da viagem'
                             value={value}
                             onChange={onChange}
                             minDate={startDate}
-                        />                      
+                        />  
+                        {errors.end_date && <Text style={styles.textError}>{errors.end_date?.message}</Text>}
+                    </>                           
                     )}
                 />
                 )}
+
+                <TouchableOpacity style={styles.btn} onPress={handleSubmit(createNewTravel)}>
+                    <Text style={styles.btnText}>{isSubmitting ? 'Carregando...' : 'Cadastrar Viagem'}</Text>
+                </TouchableOpacity>
 
             </ScrollView>
         </SafeAreaView>
@@ -170,5 +185,21 @@ const styles = StyleSheet.create({
         fontWeight: '500',  
         marginTop: 14,
         marginBottom: 14
+    },
+    btn:{
+        backgroundColor: colors.orange,
+        padding: 12,
+        borderRadius: 4,
+        alignItems: 'center',
+        marginTop: 14,
+    },
+    btnText:{
+        color: colors.white,
+        fontSize: 15,
+        fontWeight: '600',
+    },
+    textError:{
+        color: colors.red,
+        marginTop: 4,
     }
 });
