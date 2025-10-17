@@ -90,7 +90,10 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                     control={control}
                     name='start_date'
                     render={({field: {value, onBlur, onChange}}) => (
-                        <DatePickerInput label='Data de início da viagem' />                      
+                        <DatePickerInput label='Data de início da viagem'
+                            value={value}
+                            onChange={onChange}
+                        />                      
                     )}
                 />
 

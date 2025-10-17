@@ -6,22 +6,27 @@ import {Calendar} from 'react-native-calendars';
 
 interface DatePickerInputProps{
     label: string;
+    minDate?: string;
+    value: string;
+    onChange: (date: string) => void;
 }
 
-export default function DatePickerInput({label}: DatePickerInputProps){
+export default function DatePickerInput({label, minDate, value, onChange}: DatePickerInputProps){
 
     const [modalVisible, setModalVisible] = useState(false);
 
     function handleDayPress(day: {dateString: string}){
-        console.log(day.dateString);
+        onChange(day.dateString);
         setModalVisible(false);
     }
+
+    const date = new Date(value);
 
     return(
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
             <TouchableOpacity style={styles.field} onPress={() => setModalVisible(true)}>
-                <Text style={styles.txt}>Selecionar data de ida</Text>
+                <Text style={{color: value ? colors.orange : colors.gray50}}>{value ? new Intl.DateTimeFormat("pt-BR").format(date) : 'Selecione uma data'}</Text>
             </TouchableOpacity>
 
             <Modal visible={modalVisible} animationType="slide" transparent>
@@ -29,7 +34,12 @@ export default function DatePickerInput({label}: DatePickerInputProps){
                     <View style={styles.modalContent}>
                         <Calendar
                             onDayPress={handleDayPress}    
-                            minDate={new Date().toISOString().split('T')[0]}                 
+                            minDate={minDate ?? new Date().toISOString().split('T')[0]}     
+                            markedDates={
+                                value ? {
+                                    [value]: {selected: true, selectedColor: colors.green, marked: true}
+                                } : {}
+                            }            
                         />
 
                         <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.btn}>
@@ -57,9 +67,6 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         padding: 12,
         justifyContent: 'center',
-    },
-    txt:{
-        color: colors.gray50,
     },
     modalOverlay:{
         flex: 1,
