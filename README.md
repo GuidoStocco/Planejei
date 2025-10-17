@@ -10,6 +10,5 @@ Tecnologias usadas:
 
 .Supabase
 
-.PostgreSQL
 
 Feito com base na arquitetura modular
