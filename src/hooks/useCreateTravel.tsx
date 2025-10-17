@@ -5,6 +5,8 @@ import { View, Text } from 'react-native';
 import { use } from 'react';
 import { supabase } from '../config/supabase';
 import { useEffect, useState } from 'react';
+import { travelService } from '../services/travel-service';
+import {router} from 'expo-router'
 
 const travelSchema = z.object({
     title: z.string().min(1, 'O objetivo da viagem é obrigatório'),
@@ -20,7 +22,7 @@ const useCreateTravel = () => {
 
     const [userId, setUserId] = useState<string | null>(null);
 
-    const {control, handleSubmit, formState:{errors, isSubmitting}} = useForm<TravelFormData>({
+    const {control, handleSubmit, formState:{errors, isSubmitting}, reset} = useForm<TravelFormData>({
         resolver: zodResolver(travelSchema)
     })
 
@@ -38,7 +40,17 @@ const useCreateTravel = () => {
 
     const createNewTravel = async (data: TravelFormData) => {
 
+        if(!userId){
+            return;
+        }
 
+        try{
+            await travelService.createTravel(data, userId);
+            reset();
+            router.replace('/(painel)/home/page')
+        }catch(err){
+            console.log(err);
+        }
 
     }
 
