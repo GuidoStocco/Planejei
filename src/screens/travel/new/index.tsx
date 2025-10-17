@@ -2,7 +2,7 @@ import colors from '@/src/constants/colors';
 import { TravelFormData } from '@/src/hooks/useCreateTravel';
 import { Feather } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { Control, FieldErrors, UseFormHandleSubmit, Controller } from 'react-hook-form';
+import { Control, FieldErrors, UseFormHandleSubmit, Controller, useWatch } from 'react-hook-form';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Platform, TextInput} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DatePickerInput from '@/src/components/calendar';
@@ -16,6 +16,12 @@ interface NewTravelScreenProps{
 }
 
 export default function NewTravelScreen({control, handleSubmit, errors, isSubmitting, createNewTravel}: NewTravelScreenProps) {
+    
+    const startDate = useWatch({
+        control,
+        name: 'start_date'
+    })
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView style={styles.container}>
@@ -96,6 +102,20 @@ export default function NewTravelScreen({control, handleSubmit, errors, isSubmit
                         />                      
                     )}
                 />
+
+                {startDate && (
+                    <Controller
+                    control={control}
+                    name='end_date'
+                    render={({field: {value, onBlur, onChange}}) => (
+                        <DatePickerInput label='Data de volta da viagem'
+                            value={value}
+                            onChange={onChange}
+                            minDate={startDate}
+                        />                      
+                    )}
+                />
+                )}
 
             </ScrollView>
         </SafeAreaView>
