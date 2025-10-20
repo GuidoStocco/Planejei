@@ -6,6 +6,9 @@ export  default function Home() {
     const {travels, loading} = useTravelList()
 
     return(
-        <HomeScreen/>
+        <HomeScreen
+            travels={travels}
+            loading={loading}
+        />
     )
 }
