@@ -1,9 +1,10 @@
 import colors from '@/src/constants/colors';
 import { Travel } from '@/src/services/travel-service';
 import { Feather } from '@expo/vector-icons';
-import { differenceInCalendarDays, isBefore, parseISO, isWithinInterval } from 'date-fns';
+import { differenceInCalendarDays, isBefore, parseISO, isWithinInterval, format } from 'date-fns';
 import { Link } from 'expo-router';
 import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {ptBR} from 'date-fns/locale/pt-BR'
 
 interface HomeScreenProps{
     loading: boolean;
@@ -42,7 +43,11 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
 
 
     const formatDateRange = (start: string, end: string) => {
+        const formatStartDate = format(parseISO(start), "dd MMMM", {locale: ptBR})
 
+        const formatEndDate = format(parseISO(end), "dd MMMM yyyy", {locale: ptBR})
+
+        return `${formatStartDate} até ${formatEndDate}`;
     }
 
  return (
@@ -73,7 +78,7 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
         {nexTravel && (
             <View style={styles.highLightCard}>
                 <Text style={styles.lightText}>{statusMessage}</Text>
-                <Text style={styles.rangeText}>20 de outubro de 2025</Text>
+                <Text style={styles.rangeText}>{formatDateRange(nexTravel.start_date, nexTravel.end_date)}</Text>
                 <Text style={styles.city}>{nexTravel.city}</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.btnText}>Acessar viagem</Text>
