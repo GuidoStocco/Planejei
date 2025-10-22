@@ -40,6 +40,11 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
         statusMessage = 'Sua viagem está em andamento';
     }
 
+
+    const formatDateRange = (start: string, end: string) => {
+
+    }
+
  return (
    <View style={styles.safeAreaView}>
     <View style={styles.container}>
@@ -69,7 +74,7 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
             <View style={styles.highLightCard}>
                 <Text style={styles.lightText}>{statusMessage}</Text>
                 <Text style={styles.rangeText}>20 de outubro de 2025</Text>
-                <Text style={styles.city}>Prado</Text>
+                <Text style={styles.city}>{nexTravel.city}</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.btnText}>Acessar viagem</Text>
                 </TouchableOpacity>
