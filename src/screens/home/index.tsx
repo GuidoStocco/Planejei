@@ -3,7 +3,7 @@ import { Travel } from '@/src/services/travel-service';
 import { Feather } from '@expo/vector-icons';
 import { differenceInCalendarDays, isBefore, parseISO, isWithinInterval, format } from 'date-fns';
 import { Link } from 'expo-router';
-import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import {ptBR} from 'date-fns/locale/pt-BR'
 
 interface HomeScreenProps{
@@ -12,7 +12,10 @@ interface HomeScreenProps{
 }
 
 export default function HomeScreen({travels, loading}: HomeScreenProps) {
-    if (!travels || travels.length === 0) {
+
+    const [nexTravel, ...otherTravels] = travels;
+
+    if (!travels) {
         return (
             <View style={styles.safeAreaView}>
                 <View style={styles.container}>
@@ -23,7 +26,7 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
         )
     }
 
-    const [nexTravel, ...otherTravels] = travels;
+    
 
     const today = new Date();
     // Protegendo parseISO caso as datas não existam
@@ -31,10 +34,12 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
     const endDate = nexTravel?.end_date ? parseISO(nexTravel.end_date) : today;
 
     let statusMessage = '';
+    
+    
     if (nexTravel?.start_date && isBefore(today, startDate)) {
-       let daysLeft = differenceInCalendarDays(startDate, today)
+        let daysLeft = differenceInCalendarDays(startDate, today)
 
-       statusMessage = `Falta ${daysLeft} para sua viagem`
+       statusMessage = `Falta ${daysLeft} dia para sua viagem`
     }else if (
         isWithinInterval(today, {start: startDate, end: endDate})
     ){
@@ -84,6 +89,27 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
                     <Text style={styles.btnText}>Acessar viagem</Text>
                 </TouchableOpacity>
             </View>
+        )}
+
+        {otherTravels.length > 0 && (
+            <>
+            <Text style={styles.nextTravel}>Próximas viagens</Text>
+            <FlatList
+                data={otherTravels}
+                keyExtractor={(item) => item.id}
+                renderItem={({item}) => (
+                    <View style={styles.card}>
+                        <Text style={styles.dateText}>
+                            {formatDateRange(item.start_date, item.end_date)}
+                        </Text>
+                        <Text style={styles.cardCity}>{item.city}</Text>
+                        <TouchableOpacity style={styles.cardBtn} activeOpacity={1}>
+                            <Text style={styles.cardBtnText}>Acessar viagem</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            />
+            </>
         )}
 
     </View>
@@ -159,5 +185,39 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: 16,
         fontWeight: '600'
+    },
+    nextTravel:{
+        color: colors.white,
+        fontSize:18,
+        fontWeight: '600',
+        marginBottom: 8,
+        marginTop: 14
+    },
+    card:{
+        backgroundColor: colors.gray200,
+        padding: 20,
+        borderRadius: 8,
+        marginBottom: 14,
+    },
+    dateText:{
+        color: colors.white,
+        marginBottom: 8
+    },
+    cardCity:{
+        fontSize:18,
+        color: colors.white,
+        fontWeight: '600',
+        marginBottom: 14
+    },
+    cardBtn:{
+        backgroundColor: colors.white,
+        padding: 8,
+        borderRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    cardBtnText:{
+        color: colors.zinc,
+        fontWeight: '600',
     }
 })
