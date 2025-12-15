@@ -17,6 +17,11 @@ export default function PainelLayout() {
                 name="travel/new/page"
                 options={{ headerShown: false }}
             />  
+
+            <Stack.Screen
+                name="detail/[id]"
+                options={{ headerShown: false }}
+            />
         </Stack>
     )
 }

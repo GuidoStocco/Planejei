@@ -2,7 +2,7 @@ import colors from '@/src/constants/colors';
 import { Travel } from '@/src/services/travel-service';
 import { Feather } from '@expo/vector-icons';
 import { differenceInCalendarDays, isBefore, parseISO, isWithinInterval, format } from 'date-fns';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import {ptBR} from 'date-fns/locale/pt-BR'
 
@@ -12,6 +12,8 @@ interface HomeScreenProps{
 }
 
 export default function HomeScreen({travels, loading}: HomeScreenProps) {
+
+    const router = useRouter();
 
     const [nexTravel, ...otherTravels] = travels;
 
@@ -85,7 +87,7 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
                 <Text style={styles.lightText}>{statusMessage}</Text>
                 <Text style={styles.rangeText}>{formatDateRange(nexTravel.start_date, nexTravel.end_date)}</Text>
                 <Text style={styles.city}>{nexTravel.city}</Text>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={() => router.push(`/(painel)/detail/${nexTravel.id}`)}>
                     <Text style={styles.btnText}>Acessar viagem</Text>
                 </TouchableOpacity>
             </View>
@@ -103,8 +105,8 @@ export default function HomeScreen({travels, loading}: HomeScreenProps) {
                             {formatDateRange(item.start_date, item.end_date)}
                         </Text>
                         <Text style={styles.cardCity}>{item.city}</Text>
-                        <TouchableOpacity style={styles.cardBtn} activeOpacity={1}>
-                            <Text style={styles.cardBtnText}>Acessar viagem</Text>
+                        <TouchableOpacity style={styles.cardBtn} activeOpacity={1} onPress={() => router.push(`/(painel)/detail/${item.id}`)}>
+                            <Text style={styles.cardBtnText}>Acessar detalhes</Text>
                         </TouchableOpacity>
                     </View>
                 )}

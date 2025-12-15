@@ -48,6 +48,18 @@ export const travelService = {
         }
 
         return data;
+    },
+
+
+    getTravelById: async (travel_id: string): Promise<Travel> => {
+        const {data, error} = await supabase.from('travels').select('*').eq('id', travel_id).single()
+
+        if(error){
+            throw error        
+                                                                 
+        }
+
+        return data;
     }
 
 }
