@@ -4,9 +4,9 @@ import DetailScreen from "@/src/screens/travel/detail"
 
 
 export default function DetailTravel(){
-    const {loading, travel} = useDetailTravel();
+    const {loading, travel, handleDelete} = useDetailTravel();
 
     return(
-        <DetailScreen loading={loading} travel={travel}/>
+        <DetailScreen loading={loading} travel={travel} handleDelete={handleDelete}/>
     )
 }

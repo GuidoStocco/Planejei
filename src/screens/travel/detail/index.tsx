@@ -10,11 +10,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 interface DetailScreenProps {
     loading: boolean;
     travel: Travel | null;
+    handleDelete: () => Promise<void>;
 }
 
 
 
-export default function DetailScreen({loading, travel}: DetailScreenProps) {
+export default function DetailScreen({loading, travel, handleDelete}: DetailScreenProps) {
 
     if(loading || !travel){
         return(
@@ -61,7 +62,7 @@ export default function DetailScreen({loading, travel}: DetailScreenProps) {
                         <Text style={styles.label}>Hotel:</Text>
                         <Text style={styles.value}>{travel?.hotel_address}</Text>
 
-                        <Pressable style={styles.deleteButton}>
+                        <Pressable style={styles.deleteButton} onPress={handleDelete}>
                             <Text style={styles.textBtn}>Excluir viagem</Text>
                         </Pressable>
                     </View>

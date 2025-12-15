@@ -60,8 +60,15 @@ export const travelService = {
         }
 
         return data;
+    },
+
+    deleteTravel: async (travel_id: string) => {
+        const {data, error} = await supabase.from('travels').delete().eq('id', travel_id)
+
+        if(error){
+            throw error
     }
 
 }
 
-
+}
