@@ -11,11 +11,17 @@ interface DetailScreenProps {
     loading: boolean;
     travel: Travel | null;
     handleDelete: () => Promise<void>;
+    remindersHook: {
+        reminders: string;
+        setReminders: React.Dispatch<React.SetStateAction<string>>;
+        loading: boolean;
+        addReminder: () => void;
+    };
 }
 
 
 
-export default function DetailScreen({loading, travel, handleDelete}: DetailScreenProps) {
+export default function DetailScreen({loading, travel, handleDelete, remindersHook}: DetailScreenProps) {
 
     if(loading || !travel){
         return(
@@ -74,8 +80,10 @@ export default function DetailScreen({loading, travel, handleDelete}: DetailScre
                             style={styles.reminderInput}
                             placeholder="Adicione um lembrete"
                             placeholderTextColor={colors.white}
+                            value={remindersHook.reminders}
+                            onChangeText={(value) => remindersHook.setReminders(value)}
                         />
-                        <Pressable style={styles.addButton}>
+                        <Pressable style={styles.addButton} onPress={async () => await remindersHook.addReminder()}>
                             <Text style={{color: colors.white}}>+</Text>
                         </Pressable>
                     </View>
