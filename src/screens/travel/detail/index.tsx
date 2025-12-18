@@ -1,4 +1,5 @@
 import colors from '@/src/constants/colors';
+import { Reminder } from '@/src/services/reminders-service';
 import { Travel } from '@/src/services/travel-service';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
@@ -16,6 +17,8 @@ interface DetailScreenProps {
         setReminders: React.Dispatch<React.SetStateAction<string>>;
         loading: boolean;
         addReminder: () => void;
+        remindersList: Reminder[];
+        deleteReminder: (reminder_id: string) => Promise<void>;
     };
 }
 
@@ -89,13 +92,15 @@ export default function DetailScreen({loading, travel, handleDelete, remindersHo
                     </View>
 
                     <View style={styles.spacingVertical}>
-                        <View style={styles.reminderItem}>
-                            <Text style={styles.reminderText}>Lembrete 1</Text>
+                        {remindersHook.remindersList.map((item) => (
+                            <View style={styles.reminderItem} key={item.id}>
+                                <Text style={styles.reminderText}>{item.description}</Text>
 
-                            <Pressable>
-                                <Feather name="trash-2" size={20} color={colors.red} />
-                            </Pressable>
-                        </View>
+                                <Pressable onPress={async () => await remindersHook.deleteReminder(item.id)}>
+                                    <Feather name="trash-2" size={20} color={colors.red} />
+                                </Pressable>
+                            </View>
+                        ))}
                     </View>
                 </ScrollView>
             </View>
