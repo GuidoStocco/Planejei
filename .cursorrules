@@ -1,0 +1,19 @@
+# Planejei - App de Viagens (Contexto para a IA)
+
+## Identidade e Stack
+- **Framework:** React Native com Expo (Expo Router para navegação).
+- **Linguagem:** TypeScript rigoroso (evite `any`, use tipagem estrita).
+- **Estado Global:** Zustand.
+- **Formulários e Validação:** react-hook-form + Zod (obrigatório para inputs e para parsing de APIs externas).
+- **Infraestrutura:** Supabase para tudo (PostgreSQL, Auth e Storage).
+- **Estilização:** StyleSheet nativo do React Native. SEMPRE separe em arquivos `*Style.ts`.
+
+## Regras de Arquitetura Modular
+O projeto utiliza uma arquitetura baseada em features dentro da pasta `src/`.
+- Nunca crie lógica complexa dentro da pasta `app/`. A pasta `app/` serve APENAS para o roteamento do Expo Router.
+
+
+## Restrições Críticas (Mobile First)
+- PROIBIDO usar tags web (`div`, `span`, `p`). Use apenas componentes nativos (`View`, `Text`, `Pressable`, etc).
+- PROIBIDO usar CSS web (`box-shadow`, `display: grid`, `vh`, `vw`). Use propriedades do React Native.
+- Sempre trate 4 estados de UI em telas de dados: Loading, Sucesso, Erro e Vazio.
