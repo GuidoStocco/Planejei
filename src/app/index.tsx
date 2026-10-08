@@ -11,7 +11,7 @@ export default function Index() {
 
     useEffect(() => {
         if(!singed){
-            router.replace("/(auth)/signin/page");
+            router.replace("/(auth)/screen/page");
             loading = false;
         }else{
            (   <View>
