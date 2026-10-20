@@ -5,14 +5,10 @@ import { router } from "expo-router";
 
 
 export default function Index() {
-
-    let loading = true;
     let singed = false;
-
     useEffect(() => {
         if(!singed){
-            router.replace("/(auth)/screen/page");
-            loading = false;
+            router.replace("/(auth)/welcome/page");
         }else{
            (   <View>
                     <ActivityIndicator size="large" color="#0000ff" />
