@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import {SafeAreaProvider } from "react-native-safe-area-context";
 
 
 

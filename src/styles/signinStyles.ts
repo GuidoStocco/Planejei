@@ -17,15 +17,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     box2:{
-        // backgroundColor:'blue',
-        flex:2
+        // backgroundColor:'white',
+        flex:2,
+        paddingHorizontal: 20,
     },
     box3:{
         // backgroundColor:'green',
         flex:1
     },
     containerIcon:{
-        backgroundColor: '#4DB6AC',
+        backgroundColor: COLORS.primary,
         height: 55,
         width: 55,
         justifyContent:'center',
@@ -58,4 +59,5 @@ export const styles = StyleSheet.create({
         height: gradientSize,
         borderTopRightRadius: gradientSize, // Arredonda a ponta que "vaza" pro centro da tela
       },
+     
 })
