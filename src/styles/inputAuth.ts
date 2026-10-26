@@ -3,7 +3,7 @@ import { COLORS } from "../constants/COLORS";
 
 export const styles = StyleSheet.create({
     container:{
-        paddingTop: 10,
+        // paddingTop: 10,
         // backgroundColor: 'red'
     },
     title:{
@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         color: COLORS.subtext,
         marginBottom: 10,
-        marginTop:25
     },
     containerInput:{
         flexDirection: 'row',
@@ -20,7 +19,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
         alignItems: 'center',
         backgroundColor: COLORS.white,
-        borderColor: '#ccc'
+        borderColor: COLORS.subtitle
     },
     containerInputError:{
         borderColor: '#EF4444',
@@ -34,5 +33,6 @@ export const styles = StyleSheet.create({
     btnVisible:{
         marginRight: 10,
         padding: 5,
-    }
+    },
+    
 })

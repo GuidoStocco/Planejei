@@ -1,7 +1,7 @@
 import {z} from 'zod';
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import { useRoute } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 
 const SigninSchema = z.object({
@@ -16,7 +16,7 @@ export type SigninFormData = z.infer<typeof SigninSchema>
 
 export const useSignin = () => {
 
-    const route = useRoute();
+    const router = useRouter();
 
     const {control, handleSubmit, formState:{errors, isSubmitting}} = useForm<SigninFormData>({
         resolver: zodResolver(SigninSchema)
@@ -28,10 +28,15 @@ export const useSignin = () => {
     }
 
 
+    const handleSignup = () => {
+        router.push('/(auth)/signup/page');
+    };
+
     return{
         control,
         handleSubmit,
         errors,
-        isSubmitting
+        isSubmitting,
+        handleSignup,
     }
 }

@@ -23,7 +23,8 @@ export const styles = StyleSheet.create({
     },
     box3:{
         // backgroundColor:'green',
-        flex:1
+        flex:1,
+        alignItems: 'center'
     },
     containerIcon:{
         backgroundColor: COLORS.primary,
@@ -32,6 +33,14 @@ export const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 13,
     },
     box1Title:{
         fontSize: 30,
@@ -59,5 +68,93 @@ export const styles = StyleSheet.create({
         height: gradientSize,
         borderTopRightRadius: gradientSize, // Arredonda a ponta que "vaza" pro centro da tela
       },
-     
+     containerBox2:{
+        flex:1,
+        // backgroundColor: 'red'
+     },
+     forgotPassword:{
+        marginTop: 10,
+        alignItems: 'flex-end'
+     },
+     textPassword:{
+        fontWeight: '500',
+        color: COLORS.subtext
+     },
+     btnLogin:{
+        backgroundColor:COLORS.second,
+        height: 55,
+        borderRadius:10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 6,
+        marginTop: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 13,
+     },
+     textBtnLogin:{
+        fontSize: 19,
+        fontWeight: '700',
+        color: COLORS.white
+     },
+     containerContinue:{
+        marginTop: 35,
+        flexDirection: 'row',
+        alignItems: 'center'
+     },
+     continueBox1:{
+        borderWidth: 0.6,
+        flex: 1,
+        borderColor: COLORS.text
+     },
+     titleContinue:{
+        paddingHorizontal: 10,
+        fontWeight: '400',
+        fontSize: 13
+     },
+     containerGoogle:{
+        width: '50%',
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        borderRadius: 8,
+        gap: 8,
+        height: 50,
+        borderWidth: 1,
+        borderColor: COLORS.subtitle
+     },
+     iconGoogle:{
+        color: COLORS.title
+     },
+     textGoogle:{
+        fontSize: 16,
+        fontWeight: '500'
+    },
+    containerCriarConta:{
+        flexDirection: 'row',
+        marginTop: 30,
+        gap: 5,
+        flex: 1,
+        alignItems: 'flex-end',
+        paddingBottom: 5
+    },
+    titleCriarConta:{
+        color:COLORS.subtext
+    },
+    btnCriarConta:{
+
+    },
+    textBtnCriarConta:{
+        color:COLORS.second,
+        fontWeight: '500'
+    }
+
 })

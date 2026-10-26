@@ -6,11 +6,15 @@ import { useSignin } from "@/src/hooks/useSignin";
 
 export default function SignIn(){
 
-    const {control, errors, handleSubmit, isSubmitting} = useSignin();
+    const {control, errors, handleSubmit, isSubmitting, handleSignup} = useSignin();
 
     return(
         <SigninScreen
-            control={control} errors={errors} handleSubmit={handleSubmit} isSubmitting={isSubmitting}
+            control={control}
+            errors={errors}
+            handleSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+            handleSignup={handleSignup}
         />
     )
 }
