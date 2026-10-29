@@ -1,19 +1,25 @@
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { View, ActivityIndicator} from "react-native";
 import { router } from "expo-router";
+import { supabase } from "../services/supabase";
 
 
 
 export default function Index() {
-    let singed = false;
+
     useEffect(() => {
-        if(!singed){
-            router.replace("/(auth)/welcome/page");
-        }else{
-           (   <View>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            )
-        }
-    }, []);   
+        supabase.auth.onAuthStateChange((_event, session) => {
+
+            if(session){
+                router.replace('/(painel)/home/page')
+                return
+            }else{
+                router.replace('/(auth)/welcome/page')           
+            }
+        })
+    }, [])
+
+   return(
+    <ActivityIndicator size='large'  color='orange'/>
+   )
 }
