@@ -1,19 +1,23 @@
 import { supabase } from "./supabase";
-import { SignupFormData } from "../hooks/useSignup";
-import { SigninFormData } from "../hooks/useSignin";
 
+
+type SigninInput = {
+    email: string;
+    password: string;
+}
+
+type SignupInput = {
+    name: string;
+    email: string;
+    password: string;
+}
 
 
 
 export const authService = {
 
-    signin: async({email, password}: SigninFormData) => {
-        const {} = await supabase.auth.signInWithPassword({email, password})
-    },
-
-
-    signup: async({name, email, password}: SignupFormData) => {
-        const {data, error} = await supabase.auth.signUp({email, password})
+    signin: async({email, password}: SigninInput) => {
+        const {data, error} = await supabase.auth.signInWithPassword({email, password})
 
         if(error){
             throw error;
@@ -23,7 +27,29 @@ export const authService = {
     },
 
 
-    logout: () => {
-        
+    signup: async({name, email, password}: SignupInput) => {
+        const {data, error} = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                data: { name },
+            },
+        })
+
+        if(error){
+            throw error;
+        }
+
+        return data;
+    },
+
+
+    signOut: async() => {
+        const {error} = await supabase.auth.signOut()
+
+        if(error){
+            throw error;
+        }
+
     }
 }

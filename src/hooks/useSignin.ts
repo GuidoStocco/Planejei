@@ -2,6 +2,8 @@ import {z} from 'zod';
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router';
+import { Alert } from 'react-native';
+import { authService } from '../services/authServices';
 
 
 const SigninSchema = z.object({
@@ -23,8 +25,17 @@ export const useSignin = () => {
     })
 
 
-    const onSubmit = () => {
-
+    const onSubmit = async( data: SigninFormData) => {
+        try {
+            await authService.signin({
+                email: data.email,
+                password: data.password,
+            });
+            router.replace('/(painel)/home/page');
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Erro ao fazer login';
+            Alert.alert('Erro', message);
+        }
     }
 
 
@@ -38,5 +49,6 @@ export const useSignin = () => {
         errors,
         isSubmitting,
         handleSignup,
+        onSubmit
     }
 }

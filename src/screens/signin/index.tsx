@@ -13,11 +13,12 @@ interface SigninScreenProps {
     errors: FieldErrors<SigninFormData>;
     isSubmitting: boolean;
     handleSignup: () => void;
+    onSubmit: (data: SigninFormData) => Promise<void>;
 }
 
 
 
-export default function SigninScreen({control, errors, handleSubmit, isSubmitting, handleSignup}: SigninScreenProps){
+export default function SigninScreen({control, errors, handleSubmit, isSubmitting, handleSignup, onSubmit}: SigninScreenProps){
     return(
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView
@@ -93,7 +94,7 @@ export default function SigninScreen({control, errors, handleSubmit, isSubmittin
                                 <Text style={styles.textPassword}>Esqueceu a senha?</Text>
                         </Pressable>  
 
-                        <Pressable style={styles.btnLogin}>
+                        <Pressable style={styles.btnLogin} onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
                                 <Text style={styles.textBtnLogin}>ENTRAR</Text>
                                 <Ionicons name="arrow-forward-outline" size={22} style={{color: 'white'}}/>
                         </Pressable> 

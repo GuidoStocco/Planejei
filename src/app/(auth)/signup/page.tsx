@@ -5,7 +5,7 @@ import SignupScreen from "../../../screens/signup";
 
 export default function Signup(){
 
-    const {control, errors, handleSignin, handleSubmit, isSubmitting} = useSignup();
+    const {control, errors, handleSignin, handleSubmit, isSubmitting, onSubmit} = useSignup();
 
     return(
         <SignupScreen 
@@ -14,6 +14,7 @@ export default function Signup(){
             handleSubmit={handleSubmit}
             isSubmitting={isSubmitting}
             handleSignin={handleSignin}
+            onSubmit={onSubmit}
         />
     )
 }

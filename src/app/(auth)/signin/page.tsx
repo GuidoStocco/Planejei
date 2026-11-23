@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import SigninScreen from "../../../screens/signin";
 import { useSignin } from "@/src/hooks/useSignin";
 
@@ -6,7 +5,7 @@ import { useSignin } from "@/src/hooks/useSignin";
 
 export default function SignIn(){
 
-    const {control, errors, handleSubmit, isSubmitting, handleSignup} = useSignin();
+    const {control, errors, handleSubmit, isSubmitting, handleSignup, onSubmit} = useSignin();
 
     return(
         <SigninScreen
@@ -15,6 +14,7 @@ export default function SignIn(){
             handleSubmit={handleSubmit}
             isSubmitting={isSubmitting}
             handleSignup={handleSignup}
+            onSubmit={onSubmit}
         />
     )
 }

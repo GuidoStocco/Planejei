@@ -2,6 +2,8 @@ import {z} from 'zod';
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router';
+import { authService } from '../services/authServices';
+import { Alert } from 'react-native';
 
 
 const SignupSchema = z.object({
@@ -28,8 +30,18 @@ export const useSignup = () => {
     })
 
 
-    const onSubmit = () => {
-
+    const onSubmit = async(data: SignupFormData) => {
+        try {
+            await authService.signup({
+                name: data.name,
+                email: data.email,
+                password: data.password,
+            });
+            router.replace('/(painel)/home/page');
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Erro ao criar conta';
+            Alert.alert('Erro', message);
+        }
     }
 
 
@@ -43,5 +55,6 @@ export const useSignup = () => {
         errors,
         isSubmitting,
         handleSignin,
+        onSubmit,
     }
 }

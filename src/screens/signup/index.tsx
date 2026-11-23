@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import InputAuth from "@/src/components/inputAuth";
 import { SignupFormData } from "@/src/hooks/useSignup";
-import { Control, Controller, FieldErrors, UseFormHandleSubmit } from "react-hook-form";
+import { Control, Controller, FieldErrors, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 
 
 interface SignupScreenProps {
@@ -14,13 +14,14 @@ interface SignupScreenProps {
     errors: FieldErrors<SignupFormData>;
     isSubmitting: boolean;
     handleSignin: () => void;
+    onSubmit: (data: SignupFormData) => Promise<void>;
 }
 
 
 
 
 
-export default function SignupScreen({control, errors, handleSubmit, isSubmitting, handleSignin}: SignupScreenProps){
+export default function SignupScreen({control, errors, handleSubmit, isSubmitting, handleSignin, onSubmit}: SignupScreenProps){
     return(
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView
@@ -136,7 +137,11 @@ export default function SignupScreen({control, errors, handleSubmit, isSubmittin
                             />    
                         </View> 
 
-                        <Pressable style={styles.btnLogin}>
+                        <Pressable
+                            style={styles.btnLogin}
+                            onPress={handleSubmit(onSubmit)}
+                            disabled={isSubmitting}
+                        >
                                 <Text style={styles.textBtnLogin}>CADASTRAR</Text>
                                 <Ionicons name="arrow-forward-outline" size={22} style={{color: 'white'}}/>
                         </Pressable> 
