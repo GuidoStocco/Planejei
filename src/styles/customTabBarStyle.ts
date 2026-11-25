@@ -1,0 +1,63 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  wrapper: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: 16,
+    backgroundColor: 'transparent',
+  },
+  container: {
+    flexDirection: 'row',
+    height: 64,
+    borderRadius: 24,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#4DB6AC',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingHorizontal: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.28,
+    shadowRadius: 16,
+    elevation: 10,
+  },
+  tabButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    gap: 4,
+  },
+  label: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#2B3831',
+  },
+  labelActive: {
+    color: '#4DB6AC',
+  },
+  aiButton: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#02534B',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -22,
+    borderWidth: 3,
+    borderColor: '#0F172A',
+    shadowColor: '#2B3831',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.35,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  aiButtonActive: {
+    backgroundColor: '#4DB6AC',
+    borderColor: '#E0F2FE',
+  },
+});
